@@ -171,28 +171,38 @@ function removeCard(boardName, listName, cardIndex){
   }
 }
 
+correctBoard = false;
+correctListA = false;
+correctListB = false;
+
+// This function is used to move a card between separate lists.
 function moveCard(boardName, fromList, toList, fromCardIndex, toCardIndex){
   for(let x in hello){
     if(boardName === x){
-      for(let y in hello[x]){
-        for(let yy in hello[x]){
-          if(fromList === y && toList === yy){
-            for(let z = 0; z < hello[x][y].length; z++){
-              if (fromCardIndex === z){
-                let copy = fromCardIndex;
-                toCardIndex = copy;
-              }
-            }
-          }
-        }
+      correctBoard = true;
+    }
+    for(let y in hello[x]){
+      if(fromList === y){
+        correctListA = true;
+      }
+      if(toList === y){
+        correctListB = true;
       }
     }
   }
+  if(correctBoard && correctListA && correctListB){
+    moved = hello[boardName][fromList][fromCardIndex];
+
+    hello[boardName][fromList].splice(fromCardIndex, 1);
+    hello[boardName][toList].splice(toCardIndex, 0, moved);
+  }
 }
+
 
 //createBoard('Alpha')
 //createList('Alpha', 'Dance');
 
 // removeCard('Tester Board', 'Doing', 1);
 // displayBoard('Tester Board')
-// moveCard('Tester Board', 'To Do', 'Doing', 1, 1);
+moveCard('Tester Board', 'To Do', 'Doing', 1, 1);
+displayBoard('Tester Board');
