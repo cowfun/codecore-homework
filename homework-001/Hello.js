@@ -26,6 +26,7 @@ let correctListB = false;
 function listBoards(array){
   console.log(`------------------`);
   for(let x in array) {
+
     console.log(`${counter}- ` + x);
     console.log(`------------------`);
     counter ++;
@@ -35,14 +36,20 @@ function listBoards(array){
 
 // This function is used to create a board if the function is called, and a duplicate doesn't exist.
 function createBoard(boardName){
+  let boardExist = false;
   for(let x in hello){
     if(boardName === x){
-      console.log(`Board ${boardName} already exist.`);
+      boardExist = true;
     }
     else{
-      console.log(`Board ${boardName} was created.`);
       hello[boardName] = boardName;
     }
+  }
+  if(boardExist){
+    console.log(`Board ${boardName} already exist.`);
+  }
+  else{
+    console.log(`Board ${boardName} was created.`);
   }
 }
 
@@ -65,6 +72,7 @@ function removeBoard(boardName){
 
 // This function is used to display the items on a board.
 function displayBoard(boardName){
+  let display = false;
   for(let x in hello){
     if(boardName === x){
       console.log(`|------------------`);
@@ -79,11 +87,15 @@ function displayBoard(boardName){
         }
         console.log(`|------------------`);
       }
+      display = true;
     }
+  }
+  if(display === false){
+    console.log(`Sorry the board ${boardName} does not exist.`)
+  }
 
-    else{
-      display = false;
-    }
+  else{
+
   }
 }
 
@@ -102,16 +114,19 @@ function createList(boardName, listName){
         else{
           hello[x][listName] = '';
           listExist = false;
-
         }
       }
+      boardExist = true;
     }
   }
-  if (listExist === true){
+  if (boardExist && listExist){
     console.log('List already exist');
   }
-  else{
+  else if (boardExist){
     console.log('New list created');
+  }
+  else{
+    console.log("Board does not exist.")
   }
 }
 
@@ -125,7 +140,9 @@ function createCard(boardName, listName, cardName){
     if(boardName === x){
       for (let y in hello[x]){
         if(listName === y){
+
           hello[x][y].push(cardName);
+          console.log(`Card '${cardName}' was created in this list, ${listName} in the board of ${boardName}.`);
           listExist = true;
         }
       }
@@ -137,7 +154,7 @@ function createCard(boardName, listName, cardName){
     console.log("Board doesn't exist.");
   }
 
-  if(listExist === false){
+  else if(listExist === false){
     console.log("List doesn't exist.");
   }
 }
@@ -188,6 +205,7 @@ function moveCard(boardName, fromList, toList, fromCardIndex, toCardIndex){
     }
   }
   if(correctBoard && correctListA && correctListB){
+
     moved = hello[boardName][fromList][fromCardIndex];
 
     hello[boardName][fromList].splice(fromCardIndex, 1);
@@ -195,13 +213,14 @@ function moveCard(boardName, fromList, toList, fromCardIndex, toCardIndex){
   }
 }
 
-
-//createBoard('Alpha')
-//createList('Alpha', 'Dance');
-
-// removeCard('Tester Board', 'Doing', 1);
-// displayBoard('Tester Board')
-// moveCard('Tester Board', 'To Do', 'Doing', 1, 1);
-// displayBoard('Tester Board');
-
-//removeBoard("Tester Boardz");
+// listBoards(hello) // Run this to test if the listBoards function works.
+// createBoard("Dodo") // Run this one to test creating a new board.
+// createBoard("Tester Board") // Run this one to test what happens with an existing board.
+// displayBoard('Tester Board') // Run this one to see an existing board get displayed.
+// displayBoard('Weekend') // Run this one to see the error code as board cannot be found.
+// createList('Tester Board', 'Weekend') // Run this one for a working function.
+// createList('Tester Board', 'Done') // Run this one for an error due to existing list.
+// createList('Tester Boardz', 'Weekend') // Run this one for an error due to non-existing board.
+// createCard('Tester Board', 'Done', 'Weekend Plans') // Run this one for it to work correctly.
+// createCard('Tester Board', 'Dones', 'Weekend Plans') // Run this one for a list which does not exist.
+// createCard('Tester Boardz', 'Done', 'Weekend Plans') // Run this one for a board which does not exist.
