@@ -1,3 +1,4 @@
+// Variables
 const hello = {
     'Tester Board': {
       'To Do': ['Laundry', 'Buy Apples', 'Pay Phone Bill'],
@@ -9,14 +10,24 @@ const hello = {
     }
 };
 
+// This counter is used to number the board names
 let counter = 1;
+
+// This are used to determine whether or not the board needs to be removed
+let remove = false;
+
+// These booleans are used in the moveCard function to determine if the
+// board and the list exists.
+let correctBoard = false;
+let correctListA = false;
+let correctListB = false;
 
 // This function is used to list out all the boards.
 function listBoards(array){
-  console.log(`------------------`)
-  for(let x in hello) {
+  console.log(`------------------`);
+  for(let x in array) {
     console.log(`${counter}- ` + x);
-    console.log(`------------------`)
+    console.log(`------------------`);
     counter ++;
   }
   counter = 1;
@@ -35,22 +46,13 @@ function createBoard(boardName){
   }
 }
 
-let removeCounter = 0;
-let remove = false;
-
 // This function is used to remove a board if the function is called and a duplicate exist.
 function removeBoard(boardName){
   for(let x in hello){
     if(boardName === x){
       delete(hello[boardName]);
-      // hello.splice(removeCounter, 1); FIGURE OUT WHY THIS DOESN'T WORK
       remove = true;
     }
-    else{
-      remove = false;
-    }
-    removeCounter++;
-    console.log(removeCounter);
   }
   if(remove === true){
     console.log(`Board ${boardName} was removed.`);
@@ -58,7 +60,6 @@ function removeBoard(boardName){
   else{
     console.log(`Board ${boardName} doesn't exist.`);
   }
-  removeCounter = 0;
   remove = false;
 }
 
@@ -66,17 +67,17 @@ function removeBoard(boardName){
 function displayBoard(boardName){
   for(let x in hello){
     if(boardName === x){
-      console.log(`|------------------`)
+      console.log(`|------------------`);
 
       for(let y in hello[x]){
 
         console.log(`| ` + y);
-        console.log(`|------------------`)
+        console.log(`|------------------`);
 
         for(let z in hello[x][y]){
           console.log(`|> ` + hello[x][y][z]);
         }
-        console.log(`|------------------`)
+        console.log(`|------------------`);
       }
     }
 
@@ -110,7 +111,7 @@ function createList(boardName, listName){
     console.log('List already exist');
   }
   else{
-    console.log('New list created')
+    console.log('New list created');
   }
 }
 
@@ -133,7 +134,7 @@ function createCard(boardName, listName, cardName){
   }
 
   if(boardExist === false){
-    console.log("Board doesn't exist.")
+    console.log("Board doesn't exist.");
   }
 
   if(listExist === false){
@@ -162,7 +163,7 @@ function removeCard(boardName, listName, cardIndex){
         if(listName === y){
           for(let z = 0; z < hello[x][y].length; z++){
             if(cardIndex === z){
-              hello[x][y].splice(z, 1)
+              hello[x][y].splice(z, 1);
             }
           }
         }
@@ -170,10 +171,6 @@ function removeCard(boardName, listName, cardIndex){
     }
   }
 }
-
-correctBoard = false;
-correctListA = false;
-correctListB = false;
 
 // This function is used to move a card between separate lists.
 function moveCard(boardName, fromList, toList, fromCardIndex, toCardIndex){
@@ -204,5 +201,7 @@ function moveCard(boardName, fromList, toList, fromCardIndex, toCardIndex){
 
 // removeCard('Tester Board', 'Doing', 1);
 // displayBoard('Tester Board')
-moveCard('Tester Board', 'To Do', 'Doing', 1, 1);
-displayBoard('Tester Board');
+// moveCard('Tester Board', 'To Do', 'Doing', 1, 1);
+// displayBoard('Tester Board');
+
+//removeBoard("Tester Boardz");
