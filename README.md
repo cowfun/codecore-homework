@@ -1,6 +1,6 @@
 # README
 
-This repo contains Calvin's homework for codecore.
+This repo contains Calvin's homework for Codecore.
 
 ## License
 [MIT License](https://opensource.org/licenses/MIT)
