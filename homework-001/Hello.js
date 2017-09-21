@@ -159,11 +159,18 @@ function createCard(boardName, listName, cardName){
   }
 }
 
+// **************************************************************************
+// The following codes are for the stretch goals component
+
 // This function is used to remove list inside a board
 function removeList(boardName, listName){
+  let boardExist = false;
+  let listExist = false;
   for(let x in hello){
     if(boardName === x){
+      boardExist = true;
       for(let y in hello[x]){
+        listExist = true;
         if(listName === y){
           delete(hello[x][y]);
         }
@@ -216,6 +223,8 @@ function moveCard(boardName, fromList, toList, fromCardIndex, toCardIndex){
 // listBoards(hello) // Run this to test if the listBoards function works.
 // createBoard("Dodo") // Run this one to test creating a new board.
 // createBoard("Tester Board") // Run this one to test what happens with an existing board.
+// removeBoard("Tester Board") // Run this one to remove an existing board.
+// removeBoard("Tester Boardz") // Run this one to test removing a board that doesn't exist.
 // displayBoard('Tester Board') // Run this one to see an existing board get displayed.
 // displayBoard('Weekend') // Run this one to see the error code as board cannot be found.
 // createList('Tester Board', 'Weekend') // Run this one for a working function.
