@@ -1,3 +1,9 @@
+// **************************************************************************
+
+// Calvin Hui | Assignment One
+
+// **************************************************************************
+
 // Variables
 const hello = {
     'Tester Board': {
@@ -22,6 +28,11 @@ let correctBoard = false;
 let correctListA = false;
 let correctListB = false;
 
+// These booleans are used throughout the code in order to determine if the items exist.
+let boardExist = false;
+let listExist = false;
+let cardExist = false;
+
 // This function is used to list out all the boards.
 function listBoards(array){
   console.log(`------------------`);
@@ -36,7 +47,9 @@ function listBoards(array){
 
 // This function is used to create a board if the function is called, and a duplicate doesn't exist.
 function createBoard(boardName){
-  let boardExist = false;
+
+  boardExist = false;
+
   for(let x in hello){
     if(boardName === x){
       boardExist = true;
@@ -93,17 +106,13 @@ function displayBoard(boardName){
   if(display === false){
     console.log(`Sorry the board ${boardName} does not exist.`)
   }
-
-  else{
-
-  }
 }
 
 // This function is used to create a new list
 function createList(boardName, listName){
 
-  let boardExist = false;
-  let listExist = false;
+  boardExist = false;
+  listExist = false;
 
   for(let x in hello){
     if (boardName === x){
@@ -133,8 +142,8 @@ function createList(boardName, listName){
 // This function is used to create a new card
 function createCard(boardName, listName, cardName){
 
-  let boardExist = false;
-  let listExist = false;
+  boardExist = false;
+  listExist = false;
 
   for(let x in hello){
     if(boardName === x){
@@ -164,35 +173,69 @@ function createCard(boardName, listName, cardName){
 
 // This function is used to remove list inside a board
 function removeList(boardName, listName){
-  let boardExist = false;
-  let listExist = false;
+
+  boardExist = false;
+  listExist = false;
+
   for(let x in hello){
     if(boardName === x){
       boardExist = true;
       for(let y in hello[x]){
-        listExist = true;
         if(listName === y){
+          listExist = true;
           delete(hello[x][y]);
         }
       }
     }
   }
+  if(boardExist && listExist){
+    console.log("List was removed.")
+  }
+
+  else if (boardExist){
+    console.log("List doesn't exist.")
+  }
+
+  else {
+    console.log("Board doesn't exist.")
+  }
 }
 
 //This function is used to remove a card inside a specific list on the board
 function removeCard(boardName, listName, cardIndex){
+
+  boardExist = false;
+  listExist = false;
+  cardExist = false;
+
   for(let x in hello){
     if(boardName === x){
+      boardExist = true;
       for(let y in hello[x]){
         if(listName === y){
+          listExist = true;
           for(let z = 0; z < hello[x][y].length; z++){
             if(cardIndex === z){
+              cardExist = true;
               hello[x][y].splice(z, 1);
             }
           }
         }
       }
     }
+  }
+
+  if(boardExist && listExist && cardExist){
+    console.log("Card was successfully removed.")
+  }
+  else if(boardExist && listExist && cardExist === false){
+    console.log("Card does not exist")
+  }
+  else if(boardExist && listExist === false){
+    console.log("List does not exist")
+  }
+  else if(boardExist === false){
+    console.log("Board does not exist")
   }
 }
 
@@ -220,16 +263,38 @@ function moveCard(boardName, fromList, toList, fromCardIndex, toCardIndex){
   }
 }
 
+// **************************************************************************
+// The following are used to test the code
 // listBoards(hello) // Run this to test if the listBoards function works.
+
 // createBoard("Dodo") // Run this one to test creating a new board.
 // createBoard("Tester Board") // Run this one to test what happens with an existing board.
+
 // removeBoard("Tester Board") // Run this one to remove an existing board.
 // removeBoard("Tester Boardz") // Run this one to test removing a board that doesn't exist.
+
 // displayBoard('Tester Board') // Run this one to see an existing board get displayed.
 // displayBoard('Weekend') // Run this one to see the error code as board cannot be found.
+
 // createList('Tester Board', 'Weekend') // Run this one for a working function.
 // createList('Tester Board', 'Done') // Run this one for an error due to existing list.
 // createList('Tester Boardz', 'Weekend') // Run this one for an error due to non-existing board.
+
 // createCard('Tester Board', 'Done', 'Weekend Plans') // Run this one for it to work correctly.
 // createCard('Tester Board', 'Dones', 'Weekend Plans') // Run this one for a list which does not exist.
 // createCard('Tester Boardz', 'Done', 'Weekend Plans') // Run this one for a board which does not exist.
+
+// **************************************************************************
+// The following are for the stretch components.
+// removeList('Tester Board', 'Done') // Run this one to delete a list.
+// removeList('Tester Board', 'Dones') // Run this one to for an error due to list not existing
+// removeList('Tester Boardz', 'Dones') // Run this one to for an error due to board not existing
+
+// removeCard('Tester Board', 'Done', 0) // Run this one to remove a card
+// removeCard('Tester Board', 'Done', 1) // Run this one for an error due to card index not existing
+// removeCard('Tester Board', 'Dones', 0) // Run this one for an error due to list not existing
+// removeCard('Tester Boardz', 'Done', 0) // Run this one for an error due to board not existing
+
+//moveCard('Tester Board', 'Doing', 'Done', 1, 1) // Run this one to move a card from one list to another.
+
+// End of Page
