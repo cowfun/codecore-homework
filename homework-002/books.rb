@@ -10,8 +10,7 @@ class Book
     @chapters = []
   end
 
-  attr_accessor :title
-  attr_accessor :chapters
+  attr_accessor :title, :chapters
 
   def add_chapter(input)
     @chapters << input
