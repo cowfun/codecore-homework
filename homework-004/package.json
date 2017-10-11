@@ -4,7 +4,10 @@
   "description": "random team picker with options of amount of teams and amount of people",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon",
+    "db:create": "createdb --echo clucks_list",
+    "db:migrate": "node db/migrations.js",
+    "db:drop": "dropdb --echo --if-exists clucks_list"
   },
   "keywords": [
     "random",
@@ -13,5 +16,15 @@
     "amounts"
   ],
   "author": "Calvin",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "knex": "^0.13.0",
+    "morgan": "^1.9.0",
+    "multer": "^1.3.0",
+    "nodemon": "^1.12.1",
+    "pg": "^7.3.0"
+  }
 }
