@@ -1,0 +1,17 @@
+{
+  "name": "homework-004",
+  "version": "0.0.0",
+  "description": "random team picker with options of amount of teams and amount of people",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "random",
+    "team",
+    "picker",
+    "amounts"
+  ],
+  "author": "Calvin",
+  "license": "MIT"
+}
