@@ -1,0 +1,56 @@
+<%- include('../partials/header') %>
+
+  <div class = "container justify-content-center">
+      <div class="card mt-3">
+        <div class="card-body">
+          <h4 class="card-title"><%= teams.title %></h4>
+          <p class="card-text mt-2"> <%= teams.members %></p>
+          <hr>
+
+          <label> Method </label>
+          <form action = '/cohorts/<%= teams.id %>' method = 'GET'>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="teamsplitter" value="option1" checked>
+                Team Count
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="teamsplitter" value="option2">
+                Numbers Per Team
+              </label>
+            </div>
+
+            <label class = "mt-4"> Quantity </label>
+            <textarea
+               class = 'form-control'
+               rows = '1'
+               name = 'amount'></textarea>
+
+            <input class = "btn btn-outline-primary align-self-end mt-2"
+                  type = 'submit'
+                  value = 'Assign Teams'/>
+          </form>
+        </div>
+
+        <div>
+          <% if (group != null) {%>
+          <div class = 'card-body'>
+            <p> <strong> # | Members </strong> </p>
+            <hr>
+            <% for (let x of group) {%>
+                <p> <strong> <%= group.indexOf(x) + 1 %> </strong> | <%= x %> </p>
+                <hr>
+            <% } %>
+          </div>
+          <% } %>
+        </div>
+
+      </div>
+  </div>
+
+
+
+
+<%- include('../partials/footer') %>

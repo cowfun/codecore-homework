@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+
+  <div class = "container justify-content-center">
+    <% for (let team of teams) { %>
+      <div class="card mt-3">
+        <div class="card-body">
+          <div class = "d-flex align-items-center">
+            <img src="<%= team.photo_path %>" class="rounded-circle mr-2" width="50" height="50">
+            <h4 class="card-title"><%= team.title %></h4>
+          </div>
+          <p class="card-text mt-2"> <%= team.members %></p>
+          <a class="btn btn-primary btn-lg" href="/cohorts/ <%= team.id %>" role="button">Show Cohort</a>
+        </div>
+      </div>
+    <% } %>
+  </div>
+
+
+<%- include('../partials/footer') %>

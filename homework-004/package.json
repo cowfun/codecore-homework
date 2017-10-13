@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "db:create": "createdb --echo clucks_list",
+    "db:create": "createdb --echo team_list",
     "db:migrate": "node db/migrations.js",
-    "db:drop": "dropdb --echo --if-exists clucks_list"
+    "db:drop": "dropdb --echo --if-exists team_list"
   },
   "keywords": [
     "random",
