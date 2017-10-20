@@ -1,0 +1,70 @@
+<div class = "container-fluid mt-3">
+
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title"><%= @post.title %></h4>
+
+      <% if @isLast %>
+        <%= image_tag '1.jpg', class: "card-img" %>
+      <% else %>
+        <%= image_tag '2.jpg', class: "card-img" %>
+      <% end %>
+
+      <p class="card-text mt-2"><%= @post.body %></p>
+
+      <div class = "text-right">
+        <%= link_to 'Edit', edit_post_path(@post), class:"btn btn-outline-primary" %>
+
+        <%= link_to(
+            'Delete',
+            post_path(@post),
+            data: {confirm: 'Are you sure?'},
+            method: :delete,
+            class:"btn btn-outline-primary") %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class = "container-fluid mt-3">
+
+  <hr>
+
+  <%= form_for [@post, @comment] do |f| %>
+
+    <h4> Leave A Comment </h4>
+    <div>
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: 'form-control', rows: '5' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+    </div>
+    <%= f.submit %>
+  <% end %>
+
+  <hr>
+
+  <% @comments.each do |comment| %>
+    <div class="card mt-3">
+      <div class="card-body">
+        <h4 class="card-title"><%= comment.name %></h4>
+        <p class="card-text"><%= comment.description %> </p>
+        <div class = "text-right">
+          <%= link_to(
+              'Delete',
+              comment_path(comment),
+              data: {confirm: 'Are you sure?'},
+              method: :delete,
+              class:"btn btn-outline-primary") %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div>
