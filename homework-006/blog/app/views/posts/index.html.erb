@@ -1,0 +1,42 @@
+<div class = "container-fluid mt-3">
+
+  <div class = "row">
+    <div class = "col-8">
+      <div class="card">
+        <%= image_tag '1.jpg', class: "card-img-top" %>
+        <div class="card-body">
+          <h4><%= link_to @featured.title, post_path(@featured), class: 'card-title' %></h4>
+          <p class="card-text"><%= @featured.body %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class = "col-4">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Most Viewed</h4>
+          <% @recent.each do |post| %>
+            <p><%= link_to post.title, post_path(post), class: 'card-text' %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class = "row">
+    <% @posts.each do |post| %>
+      <% if post.id != @featured.id %>
+        <div class = "col-4">
+          <div class="card mt-3">
+            <%= image_tag '2.jpg', class: "card-img-top" %>
+            <div class="card-body">
+              <h4><%= link_to post.title, post_path(post), class: 'card-title' %></h4>
+              <p class="card-text"><%= post.body %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>
