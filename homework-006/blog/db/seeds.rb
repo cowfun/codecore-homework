@@ -7,16 +7,59 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Post.destroy_all
+User.destroy_all
+
+PASSWORD = '12345'
+super_user = User.create(
+  first_name: 'Jon',
+  last_name: 'Snow',
+  email: 'js@winterfell.gov',
+  password: PASSWORD,
+  is_admin: true
+)
+
+test_user = User.create(
+  first_name: 'Steve',
+  last_name: 'Kim',
+  email: 'sk@gmail.com',
+  password: PASSWORD
+)
+
+users = User.all
+
+10.times.each do
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  User.create(
+    first_name: first_name,
+    last_name: last_name,
+    email: "#{first_name.downcase}.#{last_name.downcase}@example.com",
+    password: PASSWORD
+  )
+end
 
 10.times.each do
   title = Faker::LordOfTheRings.character
   body = Faker::Lorem.paragraph
   Post.create(
     title: title,
-    body: body
+    body: body,
+    user: users.sample
   )
 end
 
 posts = Post.all
 
+posts.each do |post|
+  rand(0..5).times.each do
+    Comment.create(
+      description: Faker::TheFreshPrinceOfBelAir.quote,
+      post: post,
+      user: users.sample
+    )
+  end
+end
+
 puts "#{posts.count} posts created"
+puts "Sign in with admin account #{super_user.email}, password of #{PASSWORD}"
+puts "Sign in with #{test_user.email}, password of #{PASSWORD}"
