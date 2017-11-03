@@ -1,0 +1,83 @@
+body {
+  font-family: "Arial", Helvetica, san-serif;
+  background-color: white;
+  color: black;
+}
+
+h1{
+  text-align: center;
+}
+
+.alphabet{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.individual{
+  display: inline-flex;
+  background-color: #CCCCCC;
+  width: 45px;
+  height: 45px;
+  margin: 10px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.over{
+  box-shadow: 0px 0px 30px black;
+}
+
+.right{
+  background-color: blue;
+  color: white;
+  box-shadow: 0px 0px 30px blue;
+}
+
+.wrong{
+  background-color: red;
+  color: white;
+  box-shadow: 0px 0px 30px red;
+}
+
+.individual-words{
+  display: block;
+  font-size: 50px;
+}
+
+.individual-words.hidden{
+  display: none;
+}
+.individual-boxes{
+  border-bottom: thick black solid;
+  width: 50px;
+  height: 50px;
+  margin-left: 20px;
+  text-align: center;
+}
+
+.hidden-word{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 20px
+
+}
+
+.conclusion{
+  text-align: center;
+}
+
+.container{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.picture {
+  width: 500px;
+  height: 600px;
+  background-image: url("assets/0.jpg");
+}
